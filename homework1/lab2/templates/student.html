@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thông tin sinh viên</title>
+</head>
+<body>
+    <h1>Thông tin sinh viên</h1>
+    <table border="1" cellpadding="10">
+        <tr><th>Họ tên</th><td>{{ student.name }}</td></tr>
+        <tr><th>MSSV</th><td>{{ student.student_id }}</td></tr>
+        <tr><th>Năm học</th><td>{{ student.year }}</td></tr>
+        <tr><th>Ngành</th><td>{{ student.major }}</td></tr>
+        <tr>
+            <th>Sở thích</th>
+            <td>
+                <ul>
+                    {% for hobby in student.hobbies %}
+                        <li>{{ hobby }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
