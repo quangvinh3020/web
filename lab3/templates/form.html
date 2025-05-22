@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form nhập thông tin sinh viên</title>
+</head>
+<body>
+    <h1>Nhập thông tin sinh viên</h1>
+    <form action="/submit" method="POST">
+        Họ tên: <input type="text" name="name" required><br><br>
+        MSSV: <input type="text" name="student_id" required><br><br>
+        Năm học: 
+        <select name="year">
+            <option>Năm 1</option>
+            <option>Năm 2</option>
+            <option>Năm 3</option>
+            <option>Năm 4</option>
+        </select><br><br>
+        Ngành: <input type="text" name="major"><br><br>
+        Sở thích: <br>
+        <input type="checkbox" name="hobbies" value="Nghe nhạc"> Nghe nhạc<br>
+        <input type="checkbox" name="hobbies" value="Đọc sách"> Đọc sách<br>
+        <input type="checkbox" name="hobbies" value="Chơi game"> Chơi game<br><br>
+        <button type="submit">Gửi</button>
+    </form>
+</body>
+</html>
