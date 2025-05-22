@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kết quả</title>
+</head>
+<body>
+    <h1>Thông tin bạn vừa nhập</h1>
+    <p><strong>Họ tên:</strong> {{ name }}</p>
+    <p><strong>MSSV:</strong> {{ student_id }}</p>
+    <p><strong>Năm học:</strong> {{ year }}</p>
+    <p><strong>Ngành:</strong> {{ major }}</p>
+    <p><strong>Sở thích:</strong></p>
+    <ul>
+        {% for hobby in hobbies %}
+            <li>{{ hobby }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
