@@ -1,7 +1,7 @@
 # web
-lab1:
-
+lab1
 bai 1: 
+
 ![image](https://github.com/user-attachments/assets/ec7e9444-3d5b-47b6-b5f4-862afb1a20ec)
 Bai 2:
 
