@@ -3,6 +3,7 @@ lab1
 bai 1: 
 
 ![image](https://github.com/user-attachments/assets/ec7e9444-3d5b-47b6-b5f4-862afb1a20ec)
+
 Bai 2:
 
 ![image](https://github.com/user-attachments/assets/4cd97f2c-882e-4b79-ba1a-4888252b13f3)
