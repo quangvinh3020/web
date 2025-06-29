@@ -1,0 +1,18 @@
+.animated-box {
+  width: 100px;
+  height: 100px;
+  background-color: #1b74e4;
+  transition: transform 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.animated-box:hover {
+  transform: scale(1.2);
+  animation-play-state: paused;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}

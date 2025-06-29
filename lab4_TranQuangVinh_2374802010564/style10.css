@@ -1,0 +1,28 @@
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, div {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  height: 50px;
+}
+
+.box1 {
+  width: 25%;
+  background-color: green;
+}
+
+.box2 {
+  width: 50%;
+  background-color: violet;
+}
+
+.box3 {
+  width: 75%;
+  background-color: brown;
+}
+
+.box4 {
+  width: 100%;
+  background-color: orange;
+}
