@@ -1,0 +1,12 @@
+:root {
+  --heading-color: #333333;
+  --text-color: #404040;
+}
+
+h1 {
+  color: var(--heading-color);
+}
+
+p {
+  color: var(--text-color);
+}
