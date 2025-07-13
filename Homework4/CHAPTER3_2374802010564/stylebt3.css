@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+}
+
+.footer {
+  background-color: #111;
+  color: #fff;
+  display: flex;
+  justify-content: flex-start; /* lệch trái */
+  padding: 30px;
+  font-size: 14px;
+  width: 600px; /* khống chế chiều rộng như ảnh */
+}
+
+.footer__about {
+  width: 50%;
+  padding-right: 20px;
+}
+
+.footer__about h3,
+.footer__links h3 {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #666;
+  padding-bottom: 5px;
+}
+
+.footer__about p {
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.footer__links {
+  width: 50%;
+}
+
+.footer__link-columns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__link-columns ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__link-columns li {
+  margin-bottom: 10px;
+}
+
+.footer__link-columns a {
+  text-decoration: none;
+  color: #ccc;
+}
+
+.footer__link-columns a:hover {
+  color: #fff;
+}

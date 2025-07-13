@@ -1,0 +1,11 @@
+.list li:first-child {
+  color: red;
+}
+
+.list li:last-child {
+  color: blue;
+}
+
+.list li:nth-child(2) {
+  font-weight: bold;
+}

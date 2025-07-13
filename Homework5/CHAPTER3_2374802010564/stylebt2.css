@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.contact {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.nav a {
+  margin-left: 10px;
+  text-decoration: none;
+  color: black;
+  padding: 3px 8px;
+  border: 1px solid transparent;
+}
+.nav a:hover,
+.nav a:focus {
+  border: 1px solid #000;
+}
+
+main {
+  position: relative;
+  height: 700px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
+.green { background-color: green; }
+.red { background-color: red; }
+.blue { background-color: blue; }

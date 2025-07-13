@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  margin: 0;
+  padding: 20px;
+}
+
+.news {
+  max-width: 600px;
+  margin: auto;
+}
+
+.news__item {
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.news__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.news__text {
+  padding: 10px;
+}
+
+.news__title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 10px;
+  color: #000;
+}
+
+.news__desc {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+}

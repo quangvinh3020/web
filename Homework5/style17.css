@@ -1,0 +1,23 @@
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+.fb-group {
+  padding: 16px;
+}
+
+.heading {
+  font-size: 2.8rem;
+}
+
+.desc {
+  font-size: 1.6rem;
+}
+
+.button-link {
+  color: #fff;
+  background-color: #1b74e4;
+  font-size: 1.6rem;
+  padding: 8px 16px;
+  text-decoration: none;
+}

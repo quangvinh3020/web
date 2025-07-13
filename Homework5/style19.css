@@ -1,0 +1,45 @@
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, div {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.content {
+  padding: 16px;
+}
+
+.heading {
+  font-size: 2.8rem;
+}
+
+.posts-list {
+  margin-top: 32px;
+}
+
+.post-item {
+  padding: 12px 14px;
+  border: 2px solid #ccc;
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
+.post-item .title a {
+  color: #333;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+.post-item .desc {
+  font-size: 1.6rem;
+  color: #444;
+  margin-top: 10px;
+}
+
+.post-item .min-read {
+  font-size: 1.4rem;
+  color: #666;
+  margin-top: 12px;
+}
