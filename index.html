@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bán Tool software</title>
+  <link rel="stylesheet" href="css/Style.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="index.html" class="logo">
+      <img src="img/logo_light_V2N.png" alt="Homepage Logo">
+    </a>
+    <a href="#" class="active">Trang Chủ</a>
+    <a href="#">Sản Phẩm</a>
+    <a href="#">Lịch Sử Mua Hàng</a>
+    <a href="#">Nạp Thẻ Cào</a>
+    <a href="#">Ví Điện Tử</a>
+    <a href="#">Bài Viết</a>
+    <a href="#">Liên Hệ</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header">
+      <div class="left">
+        <button class="promo-btn">💰 CLICK VÀO ĐÂY XEM KHUYẾN MÃI</button>
+      </div>
+      <div class="right">
+        <button class="btn" onclick="window.open('https://zalo.me/123456789', '_blank')">
+  Tham Gia Nhóm Hỗ Trợ ZALO
+</button>
+        <button class="btn">Hướng Dẫn Mua Tool</button>
+        <div class="user-dropdown">
+          <div class="user-trigger" onclick="toggleDropdown()">
+            <img src="img/user.png" alt="User Avatar" class="avatar">
+            <span>Chưa đăng nhập</span>
+            <span class="arrow">▼</span>
+          </div>
+          <div id="dropdownMenu" class="dropdown-menu">
+            <a href="login.html">🔐 Đăng Nhập</a>
+            <a href="register.html">⚙️ Đăng Ký</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Nội dung chính -->
+    </div>
+
+    <div class="footer">
+      All Rights Reserved by <b>WUANGVINH.ID.VN</b>. Designed and Developed by <span class="highlight">WUANGVINH 1.1</span>
+    </div>
+  </div>
+
+  <!-- Modal khuyến mãi -->
+  <div id="promoModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <h2 class="modal-title">Thông báo</h2>
+      </div>
+      <div class="modal-body">
+        <h3 class="promo-title">Khuyến mãi nạp</h3>
+        <p class="promo-highlight">💖 ĐẶC BIỆT KM NẠP X2 ĐẾN HẾT NGÀY 23/11/2024 💖</p>
+        <ul class="promo-list">
+          <li>Nạp trên 300k → <span class="promo-bold">nhận thêm 50k</span></li>
+          <li>Nạp trên 500k → <span class="promo-bold">nhận thêm 150k</span></li>
+        </ul>
+        <p class="promo-note">
+          <span class="promo-bold">Đặc biệt:</span> share bài viết vào 2 group + thả tim + follow page + tag tên 2 người bạn → được <span class="promo-bold">+30% nạp tiền</span><br>
+          Link: <a href="https://www.facebook.com/share/p/IEgZuoRXyw/" target="_blank">Xem bài viết khuyến mãi</a>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button onclick="closeModal()">Đóng</button>
+        <button onclick="closeModalFor2Hours()">Tắt trong 2 giờ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const promoModal = document.getElementById("promoModal");
+    const btn = document.querySelector(".promo-btn");
+
+    window.onload = () => {
+      const hideUntil = localStorage.getItem("promoModalHideUntil");
+      const now = new Date().getTime();
+      if (!hideUntil || now > parseInt(hideUntil)) {
+        promoModal.style.display = "block";
+      }
+    };
+
+    btn.addEventListener("click", () => {
+      promoModal.style.display = "block";
+    });
+
+    function closeModal() {
+      promoModal.style.display = "none";
+    }
+
+    function closeModalFor2Hours() {
+      const hideUntil = new Date().getTime() + 2 * 60 * 60 * 1000;
+      localStorage.setItem("promoModalHideUntil", hideUntil.toString());
+      closeModal();
+    }
+
+    window.onclick = function(event) {
+      if (event.target === promoModal) closeModal();
+    };
+
+    // Dropdown toggle
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.classList.toggle("show");
+    }
+
+    // Click ra ngoài dropdown thì tắt
+    window.addEventListener("click", function(event) {
+      if (!event.target.closest(".user-dropdown")) {
+        document.getElementById("dropdownMenu").classList.remove("show");
+      }
+    });
+  </script>
+</body>
+</html>

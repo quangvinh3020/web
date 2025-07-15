@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản Lý Danh Mục</title>
+  <link rel="stylesheet" href="css/quanlidanhmuc.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="admin.html" class="logo">
+      <img src="img/logo_light_V2N.png" alt="Homepage Logo">
+    </a>
+ <a href="quanlidanhmuc.html">Quản lí danh mục</a>
+    <a href="#">Mã Nguồn</a>
+    <a href="#">Ngân hàng</a>
+    <a href="#">Khách hàng</a>
+    <a href="#">Lịch sử nạp tiền</a>
+    <a href="#">Bài Viết</a>
+    <a href="#">Cấu hình</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header">
+ 
+    </div>
+
+    <div class="content">
+      <h1>Quản Lý Danh Mục</h1>
+      <!-- Danh sách danh mục -->
+      <table id="css/quanlidanhmuc" class="table-header">
+        <thead>
+          <tr>
+            <th>#ID</th>
+            <th>Tên danh mục</th>
+            <th>Trạng thái</th>
+            <th>Ngày tạo</th>
+            <th>Cập nhật</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dữ liệu danh mục sẽ được hiển thị ở đây -->
+        </tbody>
+      </table>
+
+      <!-- Nút Tạo Danh Mục Mới -->
+      <div class="actions">
+        <button class="btn" onclick="openCreateCategoryForm()">Tạo danh mục mới</button>
+      </div>
+
+      <!-- Form Tạo Danh Mục -->
+      <div id="createCategoryForm" class="form-container" style="display:none;">
+        <h2>Tạo Danh Mục Mới</h2>
+        <form id="categoryForm">
+          <label for="categoryOrder"></label>
+          <input type="number" id="categoryOrder" placeholder="Số thứ tự hiển thị" required />
+
+          <label for="categoryName"></label>
+          <input type="text" id="categoryName" placeholder="Tên danh mục" required />
+
+          <label for="categoryStatus"></label>
+          <select id="categoryStatus">
+            <option value="active">Hiển thị</option>
+            <option value="inactive">Ẩn</option>
+          </select>
+
+          <button type="submit" class="btn">Đăng</button>
+          <button type="button" class="btn" onclick="closeCreateCategoryForm()">Hủy</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer">
+      All Rights Reserved by <b>WUANGVINH.ID.VN</b>. Designed and Developed by <span class="highlight">WUANGVINH 1.1</span>
+    </div>
+  </div>
+
+  <script>
+    // Kiểm tra phân quyền người dùng
+    if (!localStorage.getItem("token") || localStorage.getItem("role") !== "Admin") {
+      window.location.href = "login.html";  // Nếu không phải Admin, chuyển đến trang đăng nhập
+    }
+
+    // Hiển thị danh mục từ MongoDB (Giả sử có API backend để lấy danh mục)
+    async function loadCategories() {
+      const response = await fetch('http://localhost:3000/api/categories');
+      const categories = await response.json();
+      
+      const tableBody = document.querySelector("#categoryTable tbody");
+      tableBody.innerHTML = ""; // Xóa nội dung hiện tại
+
+      categories.forEach(category => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${category.id}</td>
+          <td>${category.name}</td>
+          <td>${category.status}</td>
+          <td>${category.createdAt}</td>
+          <td><button class="btn" onclick="editCategory(${category.id})">Cập nhật</button></td>
+          <td><button class="btn" onclick="deleteCategory(${category.id})">Xóa</button></td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Mở form tạo danh mục mới
+    function openCreateCategoryForm() {
+      document.getElementById('createCategoryForm').style.display = 'block';
+    }
+
+    // Đóng form tạo danh mục mới
+    function closeCreateCategoryForm() {
+      document.getElementById('createCategoryForm').style.display = 'none';
+    }
+
+    // Gửi form tạo danh mục mới
+    document.getElementById('categoryForm').addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const categoryOrder = document.getElementById("categoryOrder").value;
+      const categoryName = document.getElementById("categoryName").value;
+      const categoryStatus = document.getElementById("categoryStatus").value;
+
+      const newCategory = {
+        order: categoryOrder,
+        name: categoryName,
+        status: categoryStatus
+      };
+
+      // Gửi dữ liệu đến backend để lưu vào MongoDB
+      const response = await fetch('http://localhost:3000/api/categories', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newCategory)
+      });
+
+      if (response.ok) {
+        alert("Tạo danh mục thành công");
+        closeCreateCategoryForm();
+        loadCategories();  // Tải lại danh sách danh mục
+      } else {
+        alert("Có lỗi xảy ra khi tạo danh mục");
+      }
+    });
+
+    // Xóa danh mục
+    async function deleteCategory(id) {
+      const response = await fetch(`http://localhost:3000/api/categories/${id}`, {
+        method: 'DELETE'
+      });
+
+      if (response.ok) {
+        alert("Danh mục đã được xóa");
+        loadCategories();  // Tải lại danh sách danh mục
+      } else {
+        alert("Có lỗi xảy ra khi xóa danh mục");
+      }
+    }
+
+    // Cập nhật danh mục
+    function editCategory(id) {
+      alert("Chức năng cập nhật danh mục đang phát triển.");
+    }
+
+    // Tải danh mục khi trang được load
+    window.onload = loadCategories;
+  </script>
+</body>
+</html>

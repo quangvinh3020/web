@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Đăng Nhập</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <img src="img/login1.png" alt="Login Illustration" />
+    </div>
+    <div class="right">
+      <h2>Đăng Nhập</h2>
+      <p>Nhập tài khoản và mật khẩu để truy cập trang web.</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <input type="text" id="username" placeholder="Tên đăng nhập" required />
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Mật khẩu" required />
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="notRobot" />
+          <label for="notRobot">Tôi không phải robot</label>
+        </div>
+        <button type="submit" class="login-btn">Đăng Nhập</button>
+      </form>
+      <div class="register-link">
+        Chưa có tài khoản? <a href="register.html">Đăng Ký</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const notRobot = document.getElementById("notRobot").checked;
+
+      // Kiểm tra xác nhận CAPTCHA
+      if (!notRobot) {
+        alert("Bạn phải xác nhận bạn không phải robot!");
+        return;
+      }
+
+      try {
+        const res = await fetch("http://localhost:3000/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          alert("Đăng nhập thành công");
+
+          // Lưu token và thông tin người dùng vào localStorage
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("username", username);
+          localStorage.setItem("role", data.role);  // Lưu vai trò người dùng
+
+          // Dựa trên vai trò, chuyển hướng người dùng đến trang tương ứng
+          const role = data.role || 'User';  // Gán 'User' mặc định nếu không có role
+
+          // Kiểm tra vai trò của người dùng để phân quyền
+          if (role === "Admin") {
+            window.location.href = "admin.html";  // Trang quản lý Admin
+          } else if (role === "User") {
+            window.location.href = "user.html";  // Trang cho người dùng bình thường
+          } else {
+            window.location.href = "index.html";  // Trang chính cho khách
+          }
+        } else {
+          alert(data.message || "Lỗi đăng nhập!");  // Thông báo lỗi nếu có
+        }
+      } catch (error) {
+        alert("Lỗi kết nối server! Vui lòng kiểm tra lại kết nối.");
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

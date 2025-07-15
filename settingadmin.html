@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản trị website - Admin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="admin.html" class="logo">
+      <img src="img/logo_light_V2N.png" alt="Homepage Logo">
+    </a>
+    <a href="quanlidanhmuc.html">Quản lí danh mục</a>
+    <a href="#">Mã Nguồn</a>
+    <a href="#">Ngân hàng</a>
+    <a href="#">Khách hàng</a>
+    <a href="#">Lịch sử nạp tiền</a>
+    <a href="#">Bài Viết</a>
+    <a href="#">Cấu hình</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header">
+      <button class="promo-btn">Setting cho admin</button>
+    </div>
+
+
+
+    <div class="footer">
+      All Rights Reserved by <b>WUANGVINH.ID.VN</b>. Designed and Developed by <span class="highlight">WUANGVINH 1.1</span>
+    </div>
+  </div>
+
+  <script>
+    // Kiểm tra phân quyền người dùng
+    if (!localStorage.getItem("token") || localStorage.getItem("role") !== "Admin") {
+      window.location.href = "login.html";  // Nếu không phải Admin, chuyển đến trang đăng nhập
+    }
+
+    // Đăng xuất
+    function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      localStorage.removeItem("role");
+      window.location.href = "login.html";  // Chuyển hướng về trang đăng nhập sau khi đăng xuất
+    }
+
+    // Xử lý form đăng sản phẩm
+    document.getElementById("productForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const formData = new FormData(document.getElementById("productForm"));
+      
+      // Gửi dữ liệu tới backend
+      try {
+        const response = await fetch('http://localhost:3000/api/products', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert(`Sản phẩm ${data.name} đã được đăng thành công!`);
+          document.getElementById("productForm").reset();
+        } else {
+          alert('Đã xảy ra lỗi khi đăng sản phẩm.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Lỗi kết nối server');
+      }
+    });
+  </script>
+</body>
+</html>
