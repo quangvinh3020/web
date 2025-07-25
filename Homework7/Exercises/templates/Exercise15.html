@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lọc theo giới tính</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h2>Lọc sinh viên theo giới tính</h2>
+    <form method="get">
+        <select name="gender" onchange="this.form.submit()">
+            <option value="">Tất cả</option>
+            <option value="Nam" {% if gender=="Nam" %}selected{% endif %}>Nam</option>
+            <option value="Nữ" {% if gender=="Nữ" %}selected{% endif %}>Nữ</option>
+        </select>
+    </form>
+    <table border="1">
+        <tr>
+            <th>Họ tên</th>
+            <th>Giới tính</th>
+            <th>GPA</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.gender }}</td>
+            <td>{{ s.gpa }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Về menu</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Thống kê ngành</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h2>Thống kê số sinh viên từng ngành</h2>
+    <table border="1">
+        <tr>
+            <th>Ngành</th>
+            <th>Số lượng</th>
+        </tr>
+        {% for stat in stats %}
+        <tr>
+            <td>{{ stat._id }}</td>
+            <td>{{ stat.count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Về menu</a>
+</body>
+</html>

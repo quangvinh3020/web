@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm tài khoản</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Thêm tài khoản mới</h2>
+    <form method="POST">
+        <label>Tên đăng nhập: <input name="username" required></label><br>
+        <label>Mật khẩu: <input type="password" name="password" required></label><br>
+        <label>Quyền:
+            <select name="role">
+                <option value="user">user</option>
+                <option value="admin">admin</option>
+            </select>
+        </label><br>
+        <button type="submit">Thêm</button>
+    </form>
+    <a href="{{ url_for('users') }}">Quay lại danh sách</a>
+</body>
+</html>

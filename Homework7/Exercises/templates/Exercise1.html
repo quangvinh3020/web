@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sinh viên</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h2>Danh sách sinh viên</h2>
+    <table border="1">
+        <tr>
+            <th>Họ tên</th>
+            <th>Tuổi</th>
+            <th>Giới tính</th>
+            <th>Ngành</th>
+            <th>Toán</th>
+            <th>Văn</th>
+            <th>Anh</th>
+            <th>GPA</th>
+            <th>Rank</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.age }}</td>
+            <td>{{ s.gender }}</td>
+            <td>{{ s.major }}</td>
+            <td>{{ s.math }}</td>
+            <td>{{ s.literature }}</td>
+            <td>{{ s.english }}</td>
+            <td>{{ s.gpa }}</td>
+            <td>{{ s.rank }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Về menu</a>
+</body>
+</html>

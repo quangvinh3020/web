@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .display {
+            background-color: #333;
+            color: #fff;
+            font-size: 2em;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: right;
+            overflow: hidden; /* Prevent text overflow */
+            white-space: nowrap; /* Keep text on single line */
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .button {
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #e0e0e0;
+            transition: background-color 0.2s;
+        }
+
+        .button:hover {
+            background-color: #d0d0d0;
+        }
+
+        .button.operator {
+            background-color: #f7923b;
+            color: #fff;
+        }
+
+        .button.operator:hover {
+            background-color: #e6812a;
+        }
+
+        .button.clear {
+            background-color: #ff4d4d;
+            color: #fff;
+        }
+
+        .button.clear:hover {
+            background-color: #e04444;
+        }
+
+        .button.equals {
+            background-color: #4CAF50;
+            color: #fff;
+            grid-column: span 2; /* Make the equals button span two columns */
+        }
+
+        .button.equals:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="button clear" data-action="clear">AC</button>
+            <button class="button operator" data-action="divide">/</button>
+            <button class="button operator" data-action="multiply">*</button>
+            <button class="button operator" data-action="subtract">-</button>
+
+            <button class="button" data-value="7">7</button>
+            <button class="button" data-value="8">8</button>
+            <button class="button" data-value="9">9</button>
+            <button class="button operator" data-action="add">+</button>
+
+            <button class="button" data-value="4">4</button>
+            <button class="button" data-value="5">5</button>
+            <button class="button" data-value="6">6</button>
+
+            <button class="button" data-value="1">1</button>
+            <button class="button" data-value="2">2</button>
+            <button class="button" data-value="3">3</button>
+
+            <button class="button" data-value="0">0</button>
+            <button class="button" data-value=".">.</button>
+            <button class="button equals" data-action="equals">=</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

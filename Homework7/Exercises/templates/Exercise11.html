@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Xếp loại học lực</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h2>Xếp loại học lực sinh viên</h2>
+    <table border="1">
+        <tr>
+            <th>Họ tên</th>
+            <th>GPA</th>
+            <th>Xếp loại</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.gpa }}</td>
+            <td>{{ s.rank }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Về menu</a>
+</body>
+</html>

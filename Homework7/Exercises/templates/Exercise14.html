@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lọc theo tuổi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h2>Lọc sinh viên theo độ tuổi</h2>
+    <form method="POST">
+        <label>Tuổi từ <input type="number" name="min_age" required></label>
+        <label>đến <input type="number" name="max_age" required></label>
+        <button type="submit">Lọc</button>
+    </form>
+    <table border="1">
+        <tr>
+            <th>Họ tên</th>
+            <th>Tuổi</th>
+            <th>GPA</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.age }}</td>
+            <td>{{ s.gpa }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Về menu</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa sinh viên</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h2>Sửa thông tin sinh viên</h2>
+    <form method="POST">
+        <label>Họ tên: <input name="name" value="{{ student.name }}" required></label><br>
+        <label>Tuổi: <input type="number" name="age" value="{{ student.age }}" required></label><br>
+        <label>Giới tính: 
+            <select name="gender">
+                <option value="Nam" {% if student.gender=='Nam' %}selected{% endif %}>Nam</option>
+                <option value="Nữ" {% if student.gender=='Nữ' %}selected{% endif %}>Nữ</option>
+            </select>
+        </label><br>
+        <label>Ngành: <input name="major" value="{{ student.major }}" required></label><br>
+        <label>Toán: <input type="number" name="math" value="{{ student.math }}" step="0.1" required></label><br>
+        <label>Văn: <input type="number" name="literature" value="{{ student.literature }}" step="0.1" required></label><br>
+        <label>Anh: <input type="number" name="english" value="{{ student.english }}" step="0.1" required></label><br>
+        <button type="submit">Lưu thay đổi</button>
+    </form>
+    <a href="/">Về menu</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GPA cao nhất</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h2>Sinh viên có GPA cao nhất</h2>
+    <table border="1">
+        <tr>
+            <th>Họ tên</th>
+            <th>GPA</th>
+            <th>Rank</th>
+        </tr>
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.gpa }}</td>
+            <td>{{ student.rank }}</td>
+        </tr>
+    </table>
+    <a href="/">Về menu</a>
+</body>
+</html>

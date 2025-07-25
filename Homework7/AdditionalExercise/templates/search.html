@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm kiếm sản phẩm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Tìm kiếm sản phẩm</h2>
+    <form method="POST">
+        <input name="keyword" placeholder="Nhập tên sản phẩm cần tìm..." required>
+        <button type="submit">Tìm kiếm</button>
+    </form>
+    <table>
+        <tr>
+            <th>Tên</th><th>Loại</th><th>Giá</th><th>Mô tả</th>
+        </tr>
+        {% for p in products %}
+        <tr>
+            <td>{{ p.name }}</td>
+            <td>{{ p.category }}</td>
+            <td>{{ p.price }}</td>
+            <td>{{ p.description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Về menu</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GPA Sinh viên</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h2>Bảng GPA sinh viên</h2>
+    <table border="1">
+        <tr>
+            <th>Họ tên</th>
+            <th>Toán</th>
+            <th>Văn</th>
+            <th>Anh</th>
+            <th>GPA</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.math }}</td>
+            <td>{{ s.literature }}</td>
+            <td>{{ s.english }}</td>
+            <td>{{ s.gpa }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Về menu</a>
+</body>
+</html>

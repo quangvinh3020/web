@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lọc ngành</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h2>Lọc sinh viên theo ngành</h2>
+    <form method="get">
+        <select name="major" onchange="this.form.submit()">
+            <option value="">Tất cả</option>
+            {% for m in majors %}
+            <option value="{{ m }}" {% if selected==m %}selected{% endif %}>{{ m }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <table border="1">
+        <tr>
+            <th>Họ tên</th><th>Ngành</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.name }}</td>
+            <td>{{ s.major }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Về menu</a>
+</body>
+</html>

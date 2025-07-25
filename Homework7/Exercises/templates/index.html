@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lab Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+</head>
+<body>
+    <h1>Chọn chức năng Lab 7</h1>
+    <ul class="menu">
+        <li><a href="{{ url_for('exercise1') }}">1. Xem danh sách sinh viên</a></li>
+        <li><a href="{{ url_for('exercise2') }}">2. Thêm sinh viên</a></li>
+        <li><a href="{{ url_for('exercise5') }}">5. Tìm kiếm tên chính xác</a></li>
+        <li><a href="{{ url_for('exercise6') }}">6. Tìm kiếm gần đúng</a></li>
+        <li><a href="{{ url_for('exercise7') }}">7. Lọc ngành</a></li>
+        <li><a href="{{ url_for('exercise8') }}">8. Đếm số sinh viên từng ngành</a></li>
+        <li><a href="{{ url_for('exercise9') }}">9. Bảng điểm các môn</a></li>
+        <li><a href="{{ url_for('exercise10') }}">10. Hiển thị GPA</a></li>
+        <li><a href="{{ url_for('exercise11') }}">11. Xếp loại học lực</a></li>
+        <li><a href="{{ url_for('exercise12') }}">12. Xem sinh viên giỏi (GPA ≥ 8)</a></li>
+        <li><a href="{{ url_for('exercise13') }}">13. Sinh viên GPA cao nhất</a></li>
+        <li><a href="{{ url_for('exercise14') }}">14. Lọc sinh viên theo tuổi</a></li>
+        <li><a href="{{ url_for('exercise15') }}">15. Lọc sinh viên theo giới tính</a></li>
+        <li><a href="{{ url_for('exercise16') }}">16. Xuất CSV</a></li>
+    </ul>
+</body>
+</html>

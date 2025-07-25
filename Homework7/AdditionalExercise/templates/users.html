@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý tài khoản</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Danh sách tài khoản</h2>
+    <a href="{{ url_for('add_user') }}">Thêm tài khoản mới</a>
+    <table border="1">
+        <tr>
+            <th>Tên đăng nhập</th>
+            <th>Quyền</th>
+            <th>Hành động</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+                <a href="{{ url_for('delete_user', user_id=user._id) }}" onclick="return confirm('Xoá tài khoản này?')">Xoá</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Về trang chủ</a>
+</body>
+</html>

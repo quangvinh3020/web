@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm sản phẩm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Thêm sản phẩm mới</h2>
+    <form method="POST">
+        <label>Tên: <input name="name" required></label><br>
+        <label>Loại: <input name="category" required></label><br>
+        <label>Giá: <input type="number" name="price" required></label><br>
+        <label>Còn lại: <input type="number" name="quantity" required></label><br>
+        <label>Mô tả: <input name="description"></label><br>
+        <label>File ảnh: <input name="image"></label><br>
+        <button type="submit">Thêm</button>
+    </form>
+    <a href="{{ url_for('product_admin') }}">Về quản lý sản phẩm</a>
+</body>
+</html>

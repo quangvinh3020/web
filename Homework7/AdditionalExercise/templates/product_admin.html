@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sản phẩm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Quản lý sản phẩm (Admin)</h2>
+    <a href="{{ url_for('product_add') }}">Thêm sản phẩm mới</a>
+    <table>
+        <tr>
+            <th>Tên</th><th>Loại</th><th>Giá</th><th>Còn lại</th><th>Mô tả</th><th>Hành động</th>
+        </tr>
+        {% for p in products %}
+        <tr>
+            <td>{{ p.name }}</td>
+            <td>{{ p.category }}</td>
+            <td>{{ p.price }}</td>
+            <td>{{ p.quantity }}</td>
+            <td>{{ p.description }}</td>
+            <td>
+                <a href="{{ url_for('product_edit', id=p._id) }}">Sửa</a> |
+                <a href="{{ url_for('product_delete', id=p._id) }}" onclick="return confirm('Xoá sản phẩm này?')">Xoá</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Về menu</a>
+</body>
+</html>

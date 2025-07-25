@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Đăng nhập</h2>
+    {% if error %}
+        <div style="color:red">{{ error }}</div>
+    {% endif %}
+    <form method="POST">
+        <label>Tên đăng nhập: <input name="username" required></label><br>
+        <label>Mật khẩu: <input type="password" name="password" required></label><br>
+        <button type="submit">Đăng nhập</button>
+    </form>
+    <a href="/">Về trang chủ</a>
+</body>
+</html>
