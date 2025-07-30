@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi Tiết Sản Phẩm - WUANG VINH</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 250px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px 0;
+      z-index: 1000;
+    }
+    
+    .sidebar .logo {
+      display: block;
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      margin: 0 15px 30px 15px;
+      text-decoration: none;
+    }
+    
+    .sidebar a {
+      display: block;
+      padding: 12px 25px;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+    
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-left-color: #fff;
+    }
+    
+    .main-content {
+      margin-left: 250px;
+      padding: 30px;
+      background: #f8f9fa;
+      min-height: 100vh;
+    }
+    
+    .header {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .product-detail-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      padding: 30px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .product-detail-card img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-detail-card h2 {
+      margin-bottom: 15px;
+      color: #333;
+      font-weight: 600;
+    }
+    
+    .product-price {
+      font-size: 24px;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 15px;
+    }
+    
+    .product-original-price {
+      text-decoration: line-through;
+      color: #6c757d;
+      font-size: 18px;
+      margin-left: 10px;
+    }
+    
+    .sale-badge {
+      background: #ff6b6b;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-left: 10px;
+    }
+    
+    .btn-action {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      margin: 8px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-pay {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .btn-pay:hover {
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .btn-demo {
+      background: #ff6b6b;
+      color: white;
+    }
+    
+    .btn-demo:hover {
+      background: #ff5252;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .btn-download {
+      background: #22c55e;
+      color: white;
+    }
+    
+    .btn-download:hover {
+      background: #16a34a;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .product-content {
+      margin-top: 20px;
+      text-align: left;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+    
+    .active-key-box {
+      margin-top: 20px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      text-align: left;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .active-key-box input {
+      width: 70%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #dee2e6;
+      margin-right: 10px;
+    }
+    
+    .active-key-box button {
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      background: #667eea;
+      color: white;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    
+    .active-key-box button:hover {
+      background: #5a6fd8;
+    }
+    
+    .loading-spinner {
+      text-align: center;
+      padding: 40px;
+    }
+    
+    .error-message {
+      text-align: center;
+      padding: 40px;
+      color: #dc3545;
+    }
+    
+    /* Force user section to absolute right */
+    .header {
+      position: relative;
+    }
+    
+    .header #userSection {
+      position: absolute !important;
+      right: 20px !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+    }
+    
+    .header .dropdown-menu {
+      right: 0 !important;
+      left: auto !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="user.html" class="logo">
+      <h3 class="text-white mb-0 fw-bold">
+        <i class="bi bi-code-slash me-2"></i>
+        WUANG VINH
+      </h3>
+    </a>
+    <a href="user.html">
+      <i class="bi bi-house me-2"></i>Trang Chủ
+    </a>
+    <a href="sanpham.html">
+      <i class="bi bi-box me-2"></i>Sản Phẩm
+    </a>
+    <a href="lichsumuahang.html">
+      <i class="bi bi-clock-history me-2"></i>Lịch Sử Mua Hàng
+    </a>
+    <a href="napthe.html">
+      <i class="bi bi-credit-card me-2"></i>Nạp Thẻ Cào
+    </a>
+    <a href="vidientu.html">
+      <i class="bi bi-wallet2 me-2"></i>Ví Điện Tử
+    </a>
+    <a href="baiviet.html">
+      <i class="bi bi-file-text me-2"></i>Bài Viết
+    </a>
+    <a href="lienhe.html">
+      <i class="bi bi-envelope me-2"></i>Liên Hệ
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="mb-0">
+            <i class="bi bi-box text-primary"></i>
+            Chi Tiết Sản Phẩm
+          </h1>
+          <p class="text-muted mb-0">Thông tin chi tiết và mua sản phẩm</p>
+      </div>
+        <div id="userSection">
+          <!-- Login/Register buttons for non-logged in users -->
+          <div id="loginButtons" class="d-none">
+            <a href="login.html" class="btn btn-primary me-2">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
+            </a>
+            <a href="register.html" class="btn btn-outline-primary">
+              <i class="bi bi-person-plus me-2"></i>Đăng ký
+            </a>
+          </div>
+          
+          <!-- User dropdown for logged in users -->
+          <div id="userDropdown" class="dropdown d-none">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle me-2"></i>
+              <span id="username">Chưa đăng nhập</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdownBtn">
+              <li><div class="dropdown-item-text">
+                <i class="bi bi-wallet me-2"></i>Số dư: <span id="userBalance">0 ₫</span>
+              </div></li>
+              <li><a class="dropdown-item" href="#" onclick="showBalanceHistory()">
+                <i class="bi bi-graph-up me-2"></i>Biến động số dư
+              </a></li>
+              <li><a class="dropdown-item" href="#" onclick="showActivityHistory()">
+                <i class="bi bi-clock-history me-2"></i>Lịch sử hoạt động
+              </a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#" onclick="logout()">
+                <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
+              </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Detail Container -->
+    <div id="product-container">
+      <!-- Loading Spinner -->
+      <div id="loading" class="loading-spinner">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-3">Đang tải thông tin sản phẩm...</p>
+    </div>
+
+              <!-- Error Message -->
+        <div id="error" class="error-message d-none">
+          <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
+          <h4 class="mt-3">Không tìm thấy sản phẩm</h4>
+          <p class="text-muted">Sản phẩm có thể đã bị xóa hoặc không tồn tại</p>
+          <div class="mt-3">
+            <button class="btn btn-warning me-2" onclick="testWithRealId()">
+              <i class="bi bi-bug me-2"></i>Test với ID thực
+            </button>
+            <a href="sanpham.html" class="btn btn-primary">
+              <i class="bi bi-arrow-left me-2"></i>Quay lại danh sách
+            </a>
+    </div>
+  </div>
+
+      <!-- Product Detail Card -->
+      <div id="product-detail" class="product-detail-card d-none">
+        <img id="product-image" src="" alt="Product Image">
+        <h2 id="product-name"></h2>
+        <div class="product-price">
+          <span id="product-price"></span>
+          <span id="product-original-price" class="product-original-price d-none"></span>
+          <span id="sale-badge" class="sale-badge d-none"></span>
+        </div>
+        
+        <div class="product-content">
+          <h5><i class="bi bi-info-circle me-2"></i>Mô tả sản phẩm</h5>
+          <p id="product-description"></p>
+        </div>
+        
+        <div class="mt-4">
+          <button id="btn-pay" class="btn-action btn-pay" onclick="purchaseProduct()">
+            <i class="bi bi-cart-plus me-2"></i>Mua Ngay
+          </button>
+          <a id="btn-demo" class="btn-action btn-demo d-none" href="#" target="_blank">
+            <i class="bi bi-play-circle me-2"></i>Xem Demo
+          </a>
+        </div>
+        
+        <div class="active-key-box d-none" id="key-box">
+          <h6><i class="bi bi-key me-2"></i>Nhập Key Kích Hoạt</h6>
+          <div class="d-flex">
+            <input type="text" id="activation-key" placeholder="Nhập key kích hoạt...">
+            <button onclick="activateProduct()">Kích Hoạt</button>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    let currentProduct = null;
+    let currentUser = null;
+
+    // Update user info
+    function updateUserInfo() {
+      const username = localStorage.getItem("username");
+      const role = localStorage.getItem("role");
+      const balance = localStorage.getItem("balance");
+      const token = localStorage.getItem("token");
+      
+      const loginButtons = document.getElementById("loginButtons");
+      const userDropdown = document.getElementById("userDropdown");
+      
+      if (username && token) {
+        // User is logged in - show dropdown
+        loginButtons.classList.add("d-none");
+        userDropdown.classList.remove("d-none");
+        
+        const userDisplay = role === 'Admin' ? `${username} (Admin)` : username;
+        document.getElementById("username").textContent = userDisplay;
+        
+        // Update balance display
+        const balanceElement = document.getElementById("userBalance");
+        if (balanceElement) {
+          const balanceAmount = Number(balance || 0).toLocaleString();
+          balanceElement.textContent = balanceAmount + " ₫";
+        }
+        
+        currentUser = { username, role, balance, token };
+        console.log("👤 User info updated: " + username + " (" + role + ") - Balance: " + balance);
+      } else {
+        // User is not logged in - show login buttons
+        loginButtons.classList.remove("d-none");
+        userDropdown.classList.add("d-none");
+        
+        console.log("👤 No user logged in - showing login buttons");
+      }
+    }
+    
+    // Show balance history
+    function showBalanceHistory() {
+      const username = localStorage.getItem("username");
+      if (!username) {
+        alert("Vui lòng đăng nhập để xem biến động số dư");
+        return;
+      }
+      
+      alert("Tính năng đang phát triển...");
+    }
+    
+    // Show activity history
+    function showActivityHistory() {
+      const username = localStorage.getItem("username");
+      if (!username) {
+        alert("Vui lòng đăng nhập để xem lịch sử hoạt động");
+        return;
+      }
+      
+      alert("Tính năng đang phát triển...");
+    }
+    
+    // Logout function
+    function logout() {
+      console.log("🚪 Logging out...");
+      
+      // Clear all localStorage data
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      localStorage.removeItem("role");
+      localStorage.removeItem("balance");
+      localStorage.removeItem("user_id");
+      localStorage.removeItem("email");
+      
+      // Clear any session data
+      sessionStorage.clear();
+      
+      console.log("✅ Logout completed - All tokens cleared");
+      
+      // Redirect to login.html
+      window.location.href = "login.html";
+    }
+
+    // Get product ID from URL
+    function getProductId() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
+      console.log("🔍 URL params:", window.location.search);
+      console.log("🔍 Product ID from URL:", id);
+      return id;
+    }
+
+    // Load product details
+    async function loadProductDetails() {
+      const productId = getProductId();
+      console.log("🔍 Product ID from URL:", productId);
+      
+      if (!productId) {
+        console.log("❌ No product ID found in URL");
+        showError();
+        return;
+      }
+
+      try {
+        const url = `http://localhost:5000/api/products/${productId}`;
+        console.log("🌐 Fetching from:", url);
+        
+        const response = await fetch(url);
+        console.log("📡 Response status:", response.status);
+        
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error("❌ API Error:", errorText);
+          throw new Error(`Product not found (${response.status})`);
+        }
+        
+        const product = await response.json();
+        console.log("✅ Product data:", product);
+        
+        currentProduct = product;
+        displayProductDetails(product);
+        
+        console.log("✅ Loaded product details:", product.name);
+      } catch (error) {
+        console.error("❌ Error loading product:", error);
+        showError();
+      }
+    }
+
+    // Display product details
+    function displayProductDetails(product) {
+      console.log("🎨 Displaying product details:", product);
+      
+      const loading = document.getElementById("loading");
+      const error = document.getElementById("error");
+      const detail = document.getElementById("product-detail");
+      
+      loading.classList.add("d-none");
+      error.classList.add("d-none");
+      detail.classList.remove("d-none");
+      
+      // Set product image
+      const imageElement = document.getElementById("product-image");
+      if (product.image) {
+        imageElement.src = `http://localhost:5000${product.image}`;
+      } else {
+        imageElement.src = "https://via.placeholder.com/500x300?text=No+Image";
+      }
+      
+      // Set product name
+      document.getElementById("product-name").textContent = product.name;
+      
+      // Set product price
+      const priceElement = document.getElementById("product-price");
+      const originalPriceElement = document.getElementById("product-original-price");
+      const saleBadgeElement = document.getElementById("sale-badge");
+      
+      if (product.sale && product.sale > 0) {
+        const originalPrice = product.price;
+        const salePrice = originalPrice * (1 - product.sale / 100);
+        
+        priceElement.textContent = Number(salePrice).toLocaleString() + " ₫";
+        originalPriceElement.textContent = Number(originalPrice).toLocaleString() + " ₫";
+        originalPriceElement.classList.remove("d-none");
+        saleBadgeElement.textContent = "Sale " + product.sale + "%";
+        saleBadgeElement.classList.remove("d-none");
+      } else {
+        priceElement.textContent = Number(product.price).toLocaleString() + " ₫";
+        originalPriceElement.classList.add("d-none");
+        saleBadgeElement.classList.add("d-none");
+      }
+      
+      // Set product description
+      document.getElementById("product-description").textContent = product.description || "Không có mô tả chi tiết.";
+      
+      // Set demo link
+      const demoBtn = document.getElementById("btn-demo");
+      
+      if (product.demo_link) {
+        demoBtn.href = product.demo_link;
+        demoBtn.classList.remove("d-none");
+    } else {
+        demoBtn.classList.add("d-none");
+      }
+    }
+
+    // Show error message
+    function showError() {
+      const loading = document.getElementById("loading");
+      const error = document.getElementById("error");
+      const detail = document.getElementById("product-detail");
+      
+      loading.classList.add("d-none");
+      error.classList.remove("d-none");
+      detail.classList.add("d-none");
+    }
+
+    // Purchase product
+    async function purchaseProduct() {
+      if (!currentUser) {
+    Swal.fire({
+          title: 'Vui lòng đăng nhập',
+          text: 'Bạn cần đăng nhập để mua sản phẩm',
+          icon: 'warning',
+          confirmButtonText: 'Đăng nhập',
+          cancelButtonText: 'Hủy'
+    }).then((result) => {
+      if (result.isConfirmed) {
+            window.location.href = "login.html";
+          }
+        });
+        return;
+      }
+
+      if (!currentProduct) {
+        Swal.fire({
+          title: 'Lỗi',
+          text: 'Không tìm thấy thông tin sản phẩm',
+          icon: 'error'
+        });
+    return;
+  }
+
+      const userBalance = Number(currentUser.balance || 0);
+      const productPrice = currentProduct.sale ? 
+        currentProduct.price * (1 - currentProduct.sale / 100) : 
+        currentProduct.price;
+
+      if (userBalance < productPrice) {
+        Swal.fire({
+          title: 'Số dư không đủ',
+          text: `Bạn cần ${Number(productPrice).toLocaleString()} ₫ để mua sản phẩm này`,
+          icon: 'warning',
+          confirmButtonText: 'Nạp tiền',
+          cancelButtonText: 'Hủy'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "napthe.html";
+          }
+        });
+    return;
+  }
+
+      // Confirm purchase
+      const result = await Swal.fire({
+        title: 'Xác nhận mua hàng',
+        text: `Bạn có chắc muốn mua "${currentProduct.name}" với giá ${Number(productPrice).toLocaleString()} ₫?`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Mua ngay',
+        cancelButtonText: 'Hủy'
+      });
+
+      if (result.isConfirmed) {
+        try {
+          console.log("🛒 Creating order for product:", currentProduct._id);
+          
+          const response = await fetch('http://localhost:5000/api/orders', {
+            method: 'POST',
+    headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${currentUser.token}`
+    },
+    body: JSON.stringify({
+              product_id: currentProduct._id,
+              quantity: 1
+            })
+          });
+
+          console.log("📡 Order response status:", response.status);
+          
+          if (response.ok) {
+            const data = await response.json();
+            console.log("✅ Order created:", data);
+            
+            // Update local balance
+            localStorage.setItem("balance", data.new_balance);
+            
+            Swal.fire({
+              title: 'Mua hàng thành công!',
+              text: 'Sản phẩm đã được thêm vào lịch sử mua hàng',
+              icon: 'success',
+              confirmButtonText: 'Xem lịch sử'
+            }).then(() => {
+              window.location.href = "lichsumuahang.html";
+            });
+    } else {
+            const errorData = await response.json();
+            console.error("❌ Order API error:", errorData);
+            throw new Error(errorData.message || 'Lỗi khi mua hàng');
+          }
+        } catch (error) {
+          console.error("❌ Purchase error:", error);
+          Swal.fire({
+            title: 'Lỗi',
+            text: error.message || 'Không thể mua sản phẩm',
+            icon: 'error'
+          });
+        }
+      }
+    }
+
+    // Test with real product ID
+    function testWithRealId() {
+      console.log("🧪 Testing with real product ID...");
+      // Use the first product ID from our test
+      const realId = "6885f715fb17414b674a551f";
+      console.log("🧪 Using ID:", realId);
+      
+      // Update URL without reloading
+      const newUrl = `${window.location.pathname}?id=${realId}`;
+      window.history.pushState({}, '', newUrl);
+      
+      // Reload product details
+      loadProductDetails();
+    }
+
+    // Activate product (placeholder function)
+    function activateProduct() {
+      const key = document.getElementById("activation-key").value;
+      if (!key) {
+        Swal.fire({
+          title: 'Lỗi',
+          text: 'Vui lòng nhập key kích hoạt',
+          icon: 'warning'
+        });
+        return;
+      }
+
+      Swal.fire({
+        title: 'Kích hoạt thành công!',
+        text: 'Sản phẩm đã được kích hoạt',
+        icon: 'success'
+      });
+    }
+
+    // Initialize page
+    window.onload = function() {
+      console.log("🚀 Page loaded, initializing...");
+      updateUserInfo();
+      loadProductDetails();
+    };
+  </script>
+
+</body>
+</html>

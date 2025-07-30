@@ -1,0 +1,410 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9fafb;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 230px;
+    height: 100vh;
+    background-color: white;
+    border-right: 1px solid #eee;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+    max-height: 80px;
+    border: none; /* đảm bảo không có viền */
+    border-radius: 0; /* đảm bảo không bo tròn */
+  }
+  
+  .sidebar a {
+    display: block;
+    padding: 10px 14px;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  
+  .sidebar a.active,
+  .sidebar a:hover {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  /* Main */
+  .main-content {
+    margin-left: 230px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Header */
+  .header {
+    background-color: white;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  .promo-btn {
+    background-color: #fde047;
+    border: 1px solid #999;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .btn {
+    background: linear-gradient(to right, #a855f7, #3b82f6);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    margin-left: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .user-status {
+    margin-left: 20px;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+  }
+  
+  /* Content */
+  .content {
+    flex: 1;
+    padding: 30px;
+    min-height: 400px;
+  }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 14px;
+    font-size: 13px;
+    color: #777;
+    background-color: transparent;
+  }
+  
+  .footer .highlight {
+    color: #a855f7;
+  }
+  
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+  }
+  
+  .modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 500px;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-title {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .modal-close {
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+  }
+  
+  .modal-body {
+    margin-top: 10px;
+  }
+  
+  .promo-title {
+    color: #3b82f6;
+    margin-bottom: 10px;
+  }
+  
+  .promo-highlight {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .promo-list {
+    padding-left: 20px;
+    margin: 10px 0;
+  }
+  
+  .promo-note {
+    font-style: italic;
+    color: crimson;
+    margin-top: 10px;
+  }
+  
+  .promo-bold {
+    font-weight: bold;
+  }
+  
+  .modal-footer {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  .modal-footer button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    background-color: #2563eb;
+    color: white;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  /* Khu vực dropdown người dùng */
+  .user-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+  }
+  
+  .user-trigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 6px;
+    font-size: 14px;
+    color: #444;
+  }
+  
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .arrow {
+    font-size: 10px;
+    color: #888;
+  }
+  
+  /* Menu xổ xuống */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    width: 160px;
+    z-index: 1000;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .user-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+  }
+  
+  .user-trigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .user-trigger .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .arrow {
+    margin-left: 4px;
+    font-size: 12px;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    padding: 10px 0;
+    min-width: 140px;
+    z-index: 999;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 8px 14px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  #productForm {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px #0002;
+  padding: 32px 32px 24px 32px;
+  max-width: 600px;
+  margin: 32px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 0;
+}
+
+#productForm label {
+  font-weight: bold;
+  color: #222;
+  min-width: 130px;
+  margin-bottom: 0;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+#productForm input[type="text"],
+#productForm input[type="number"],
+#productForm input[type="file"],
+#productForm select,
+#productForm textarea {
+  flex: 1 1 auto;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 16px;
+  background: #f9fafb;
+  transition: border 0.2s;
+  margin-bottom: 0;
+  display: block;
+}
+
+#productForm input[type="file"] {
+  background: #fff;
+  padding: 8px 0;
+}
+
+#productForm input:focus,
+#productForm select:focus,
+#productForm textarea:focus {
+  border-color: #38bdf8;
+  outline: none;
+}
+
+#productForm textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.form-submit-btn {
+  background: linear-gradient(90deg,#6a5af9,#38bdf8);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px #0001;
+  width: 100%;
+  align-self: center;
+}
+
+.form-submit-btn:hover {
+  background: linear-gradient(90deg,#38bdf8,#6a5af9);
+  box-shadow: 0 4px 16px #6a5af9aa;
+}
+
+#product-message {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 700px) {
+  #productForm {
+    padding: 16px 4vw;
+    max-width: 98vw;
+  }
+  .form-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+  #productForm label {
+    min-width: unset;
+  }
+}

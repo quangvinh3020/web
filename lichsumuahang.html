@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lịch Sử Mua Hàng - FIXED</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 250px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px 0;
+      z-index: 1000;
+    }
+    
+    .sidebar .logo {
+      display: block;
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      margin: 0 15px 30px 15px;
+      text-decoration: none;
+    }
+    
+    .sidebar a {
+      display: block;
+      padding: 12px 25px;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+    
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-left-color: #fff;
+    }
+    
+    .main-content {
+      margin-left: 250px;
+      padding: 30px;
+      background: #f8f9fa;
+      min-height: 100vh;
+    }
+    
+    .header {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .history-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #667eea;
+    }
+    
+    .download-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    .download-btn:hover {
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .key-display {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 10px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+    
+    .status-badge {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    
+    .status-paid {
+      background: #d4edda;
+      color: #155724;
+    }
+    
+    .status-pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+    
+    #history-container {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      min-height: 200px;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      border: 2px solid #667eea;
+    }
+    
+    /* Force dropdown to absolute right */
+    .header {
+      position: relative;
+    }
+    
+    .header .dropdown {
+      position: absolute !important;
+      right: 20px !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+    }
+    
+    .header .dropdown-menu {
+      right: 0 !important;
+      left: auto !important;
+    }
+    
+
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="user.html" class="logo">
+      <h3 class="text-white mb-0 fw-bold">
+        <i class="bi bi-code-slash me-2"></i>
+        WUANG VINH
+      </h3>
+    </a>
+    <a href="user.html">
+      <i class="bi bi-house me-2"></i>Trang Chủ
+    </a>
+    <a href="sanpham.html">
+      <i class="bi bi-box me-2"></i>Sản Phẩm
+    </a>
+    <a href="lichsumuahang.html" class="active">
+      <i class="bi bi-clock-history me-2"></i>Lịch Sử Mua Hàng
+    </a>
+    <a href="napthe.html">
+      <i class="bi bi-credit-card me-2"></i>Nạp Thẻ Cào
+    </a>
+    <a href="vidientu.html">
+      <i class="bi bi-wallet2 me-2"></i>Ví Điện Tử
+    </a>
+    <a href="baiviet.html">
+      <i class="bi bi-file-text me-2"></i>Bài Viết
+    </a>
+    <a href="lienhe.html">
+      <i class="bi bi-envelope me-2"></i>Liên Hệ
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="mb-0">
+            <i class="bi bi-clock-history text-primary"></i>
+            Lịch Sử Mua Hàng 
+          </h1>
+          <p class="text-muted mb-0">Xem lại các sản phẩm đã mua và tải file/key</p>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle me-2"></i>
+            <span id="username">Chưa đăng nhập</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><div class="dropdown-item-text">
+              <i class="bi bi-wallet me-2"></i>Số dư: <span id="userBalance">0 ₫</span>
+            </div></li>
+            <li><a class="dropdown-item" href="#" onclick="showBalanceHistory()">
+              <i class="bi bi-graph-up me-2"></i>Biến động số dư
+            </a></li>
+            <li><a class="dropdown-item" href="#" onclick="showActivityHistory()">
+              <i class="bi bi-clock-history me-2"></i>Lịch sử hoạt động
+            </a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#" onclick="logout()">
+              <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
+            </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Purchase History -->
+    <div id="history-container">
+      <div class="text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Đang tải lịch sử mua hàng...</p>
+        <button class="btn btn-primary mt-3" onclick="loadPurchaseHistory()">
+          <i class="bi bi-arrow-clockwise me-2"></i>Tải lại
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+
+
+    // Switch user function
+    function switchUser(username) {
+      console.log("🔄 Switching to user: " + username);
+      
+      // Clear current session
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      localStorage.removeItem("role");
+      localStorage.removeItem("balance");
+      
+      // Login with new user
+      loginUser(username);
+    }
+    
+    // Login user function
+    function loginUser(username) {
+      console.log("🔐 Logging in user: " + username);
+      
+      const passwords = {
+        'user2': '123456',
+        'admin': 'admin123',
+        'testuser': '123456'
+      };
+      
+      const password = passwords[username] || '123456';
+      
+      fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("📡 Login response received");
+        
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("username", username);
+          localStorage.setItem("role", data.role || "User");
+          localStorage.setItem("balance", data.balance || "1000000");
+          
+          console.log("✅ Login successful for: " + username);
+          updateUserInfo();
+          loadPurchaseHistory();
+        } else {
+          console.log("❌ Login failed: " + (data.message || "Unknown error"));
+          alert("Đăng nhập thất bại: " + (data.message || "Lỗi không xác định"));
+        }
+      })
+      .catch(error => {
+        console.log("❌ Login error: " + error.message);
+        alert("Lỗi kết nối: " + error.message);
+      });
+    }
+    
+    // Logout function
+    function logout() {
+      console.log("🚪 Logging out...");
+      
+      // Clear all localStorage data
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      localStorage.removeItem("role");
+      localStorage.removeItem("balance");
+      localStorage.removeItem("user_id");
+      localStorage.removeItem("email");
+      
+      // Clear any session data
+      sessionStorage.clear();
+      
+      console.log("✅ Logout completed - All tokens cleared");
+      
+      // Redirect to index.html
+      window.location.href = "index.html";
+    }
+    
+    // Auto login with user2 (fallback)
+    function autoLogin() {
+      console.log("🔐 Starting auto-login...");
+      loginUser('user2');
+    }
+
+    // Update user info
+    function updateUserInfo() {
+      const username = localStorage.getItem("username");
+      const role = localStorage.getItem("role");
+      const balance = localStorage.getItem("balance");
+      
+      if (username) {
+        const userDisplay = role === 'Admin' ? `${username} (Admin)` : username;
+        document.getElementById("username").textContent = userDisplay;
+        
+        // Update balance display
+        const balanceElement = document.getElementById("userBalance");
+        if (balanceElement) {
+          const balanceAmount = Number(balance || 0).toLocaleString();
+          balanceElement.textContent = balanceAmount + " ₫";
+        }
+        
+        console.log("👤 User info updated: " + username + " (" + role + ") - Balance: " + balance);
+      } else {
+        document.getElementById("username").textContent = "Chưa đăng nhập";
+        const balanceElement = document.getElementById("userBalance");
+        if (balanceElement) {
+          balanceElement.textContent = "0 ₫";
+        }
+        console.log("👤 No user logged in");
+      }
+    }
+
+    
+
+    // Load purchase history
+    async function loadPurchaseHistory() {
+      console.log("🔄 Loading purchase history...");
+      
+      const username = localStorage.getItem("username");
+      const token = localStorage.getItem("token");
+      
+              console.log("📝 Username: " + username);
+        console.log("🔑 Token exists: " + !!token);
+      
+      if (!username || !token) {
+                  console.log("❌ Missing username or token");
+        document.getElementById("history-container").innerHTML = '<p class="text-center text-danger">Vui lòng đăng nhập để xem lịch sử mua hàng</p>';
+        return;
+      }
+      
+      try {
+        console.log("🌐 Calling API...");
+        const url = `http://localhost:5000/api/user/${username}/orders`;
+                  console.log("🌐 API URL: " + url);
+        
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          mode: 'cors'
+        });
+        
+                  console.log("📡 Response status: " + response.status);
+        
+        const data = await response.json();
+                  console.log("📦 API response received");
+        
+        if (response.ok) {
+                      console.log("✅ API successful, displaying orders");
+          
+          let orders = [];
+          if (data.orders) {
+            orders = data.orders;
+                          console.log("📦 Found orders in data.orders: " + orders.length);
+          } else if (Array.isArray(data)) {
+            orders = data;
+                          console.log("📦 Found orders as array: " + orders.length);
+          } else {
+            orders = [];
+                          console.log("📦 No orders found in response");
+          }
+          
+                      console.log("📦 Final orders array: " + orders.length);
+          displayPurchaseHistory(orders);
+        } else {
+                      console.log("❌ API failed: " + data.message);
+          document.getElementById("history-container").innerHTML = `
+            <div class="text-center">
+              <i class="bi bi-exclamation-triangle text-warning" style="font-size: 3rem;"></i>
+              <h5 class="mt-3">Lỗi tải dữ liệu</h5>
+              <p class="text-muted">${data.message || 'Không thể tải lịch sử mua hàng'}</p>
+              <button class="btn btn-primary mt-3" onclick="loadPurchaseHistory()">
+                <i class="bi bi-arrow-clockwise me-2"></i>Thử lại
+              </button>
+            </div>
+          `;
+        }
+      } catch (error) {
+        console.log("❌ Error loading history: " + error.message);
+        document.getElementById("history-container").innerHTML = `
+          <div class="text-center">
+            <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
+            <h5 class="mt-3">Lỗi kết nối</h5>
+            <p class="text-muted">Không thể kết nối đến server</p>
+            <button class="btn btn-primary mt-3" onclick="loadPurchaseHistory()">
+              <i class="bi bi-arrow-clockwise me-2"></i>Thử lại
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    // Display purchase history
+    function displayPurchaseHistory(orders) {
+      console.log("🎨 Displaying orders: " + orders.length);
+      const container = document.getElementById("history-container");
+      
+      if (!orders || orders.length === 0) {
+        console.log("📭 No orders to display");
+        container.innerHTML = `
+          <div class="text-center">
+            <i class="bi bi-cart-x text-muted" style="font-size: 3rem;"></i>
+            <h5 class="mt-3">Chưa có đơn hàng nào</h5>
+            <p class="text-muted">Bạn chưa mua sản phẩm nào. Hãy mua sản phẩm để xem lịch sử mua hàng và tải file/key.</p>
+            <div class="mt-4">
+              <a href="sanpham.html" class="btn btn-primary me-2">
+                <i class="bi bi-shop me-2"></i>Mua Sản Phẩm
+              </a>
+              <button class="btn btn-outline-secondary" onclick="loadPurchaseHistory()">
+                <i class="bi bi-arrow-clockwise me-2"></i>Tải lại
+              </button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+      
+      try {
+        const ordersHtml = orders.map((order, index) => {
+          console.log(`📦 Processing order ${index + 1}: ${order.product_name}`);
+          return `
+            <div class="history-card">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <h5 class="mb-2">
+                    <i class="bi bi-box me-2"></i>${order.product_name || 'Sản phẩm'}
+                  </h5>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="mb-1">
+                        <i class="bi bi-currency-dollar me-2"></i>
+                        <strong>Giá:</strong> ${Number(order.price || 0).toLocaleString()} ₫
+                      </p>
+                      <p class="mb-1">
+                        <i class="bi bi-calendar me-2"></i>
+                        <strong>Ngày mua:</strong> ${new Date(order.created_at || Date.now()).toLocaleString()}
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+                      <span class="status-badge ${order.status === 'completed' ? 'status-paid' : 'status-pending'}">
+                        <i class="bi ${order.status === 'completed' ? 'bi-check-circle' : 'bi-clock'} me-1"></i>
+                        ${order.status === 'completed' ? 'Đã thanh toán' : 'Chờ thanh toán'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 text-end">
+                  ${order.product_link_tai ? `
+                    <a href="${order.product_link_tai}" target="_blank" class="download-btn">
+                      <i class="bi bi-download me-2"></i>Tải File
+                    </a>
+                  ` : ''}
+                  ${order.product_link_demo ? `
+                    <a href="${order.product_link_demo}" target="_blank" class="download-btn">
+                      <i class="bi bi-play-circle me-2"></i>Demo
+                    </a>
+                  ` : ''}
+                </div>
+              </div>
+              
+              ${order.product_name_key ? `
+                <div class="mt-3">
+                  <h6><i class="bi bi-key me-2"></i>Key/License:</h6>
+                  <div class="key-display">
+                    <code>${order.product_name_key}</code>
+                    <button class="btn btn-sm btn-outline-primary ms-2" onclick="copyToClipboard('${order.product_name_key}')">
+                      <i class="bi bi-clipboard"></i>
+                    </button>
+                  </div>
+                </div>
+              ` : ''}
+              
+              ${order.product_content ? `
+                <div class="mt-3">
+                  <h6><i class="bi bi-file-text me-2"></i>Mô tả:</h6>
+                  <p class="text-muted">${order.product_content}</p>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('');
+        
+        console.log("🎨 Generated HTML for orders");
+        container.innerHTML = ordersHtml;
+                  console.log("✅ Orders displayed successfully");
+      } catch (error) {
+                  console.log("❌ Error displaying orders: " + error.message);
+        container.innerHTML = `
+          <div class="text-center">
+            <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
+            <h5 class="mt-3">Lỗi hiển thị</h5>
+            <p class="text-muted">Không thể hiển thị lịch sử mua hàng</p>
+          </div>
+        `;
+      }
+    }
+
+    // Copy to clipboard
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Đã copy key vào clipboard!');
+      });
+    }
+    
+    // Show balance history
+    function showBalanceHistory() {
+      const username = localStorage.getItem("username");
+      if (!username) {
+        alert("Vui lòng đăng nhập để xem biến động số dư");
+        return;
+      }
+      
+      document.getElementById("history-container").innerHTML = `
+        <div class="text-center">
+          <i class="bi bi-graph-up text-info" style="font-size: 3rem;"></i>
+          <h5 class="mt-3">Biến động số dư</h5>
+          <p class="text-muted">Tính năng đang phát triển...</p>
+          <button class="btn btn-primary mt-3" onclick="loadPurchaseHistory()">
+            <i class="bi bi-arrow-left me-2"></i>Quay lại lịch sử mua hàng
+          </button>
+        </div>
+      `;
+    }
+    
+    // Show activity history
+    function showActivityHistory() {
+      const username = localStorage.getItem("username");
+      if (!username) {
+        alert("Vui lòng đăng nhập để xem lịch sử hoạt động");
+        return;
+      }
+      
+      document.getElementById("history-container").innerHTML = `
+        <div class="text-center">
+          <i class="bi bi-clock-history text-warning" style="font-size: 3rem;"></i>
+          <h5 class="mt-3">Lịch sử hoạt động</h5>
+          <p class="text-muted">Tính năng đang phát triển...</p>
+          <button class="btn btn-primary mt-3" onclick="loadPurchaseHistory()">
+            <i class="bi bi-arrow-left me-2"></i>Quay lại lịch sử mua hàng
+          </button>
+        </div>
+      `;
+    }
+
+    // Initialize page
+    window.onload = function() {
+      console.log("🚀 Page loaded, initializing...");
+      updateUserInfo();
+      
+      // Check if user is logged in
+      const username = localStorage.getItem("username");
+      const token = localStorage.getItem("token");
+      
+      if (username && token) {
+        console.log("✅ User already logged in: " + username);
+        loadPurchaseHistory();
+      } else {
+        console.log("❌ No user logged in, redirecting to login");
+        window.location.href = "login.html";
+      }
+    };
+  </script>
+
+</body>
+</html> 

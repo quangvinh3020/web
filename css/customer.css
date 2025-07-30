@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9fafb;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 230px;
+    height: 100vh;
+    background-color: white;
+    border-right: 1px solid #eee;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+    max-height: 80px;
+  }
+  
+  .sidebar a {
+    display: block;
+    padding: 10px 14px;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  
+  .sidebar a.active,
+  .sidebar a:hover {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  .main-content {
+    margin-left: 230px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 30px;
+    min-height: 400px;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 14px;
+    font-size: 13px;
+    color: #777;
+  }
+  
+  .footer .highlight {
+    color: #a855f7;
+  }
+  
+  .table-container {
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+  }
+  
+  #userTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    color: #333;
+  }
+  
+  #userTable thead tr {
+    background-color: #f3f4f6;
+    color: #111827;
+  }
+  
+  #userTable th, #userTable td {
+    padding: 12px 14px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  #userTable tbody tr:hover {
+    background-color: #f9fafb;
+  }
+  
+  #userTable button {
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 2px;
+  }
+  
+  #userTable button:nth-child(1) {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  #userTable button:nth-child(2) {
+    background-color: #ef4444;
+    color: white;
+  }
+  
+  #userTable input[type="number"] {
+    width: 90px;
+    padding: 4px;
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  
+  #userTable button:nth-child(4),
+  #userTable button:nth-child(5) {
+    font-size: 14px;
+    padding: 4px 6px;
+    background-color: #10b981;
+    color: white;
+  }
+  
+  #searchInput {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 250px;
+  }
+  
