@@ -14,8 +14,8 @@ Web243 là một hệ thống quản lý cửa hàng trực tuyến hoàn chỉn
 
 | STT | Họ và Tên | MSSV | Vai Trò |
 |-----|------------|------|---------|
-| 1 | **Trần Quang Vinh** | 2374802010564 | Backend Developer & Database |
-| 2 | **Nguyễn Thanh Sơn** | 2374802010436 | Frontend Developer & UI/UX |
+| 1 | **Trần Quang Vinh** | 2374802010564 | Slide Canva |
+| 2 | **Nguyễn Thanh Sơn** | 2374802010436 | Frontend Developer & UI/UX & Backend Developer & Database|
 
 ## 🛠️ Công Nghệ Sử Dụng
 
