@@ -116,7 +116,7 @@ def login():
     if not user:
         return jsonify({'message': 'Tài khoản không tồn tại'}), 401
 
-    if user['password'] != password:
+    if not check_password_hash(user['password'], password):
         return jsonify({'message': 'Sai tài khoản hoặc mật khẩu'}), 401
 
     # Tạo JWT token
